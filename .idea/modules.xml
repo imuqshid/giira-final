@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/giira.iml" filepath="$PROJECT_DIR$/giira.iml" />
+      <module fileurl="file://$PROJECT_DIR$/volley-d663fb874701c5d6096b9ac2cf4263cbf5889e92/volley-d663fb874701c5d6096b9ac2cf4263cbf5889e92.iml" filepath="$PROJECT_DIR$/volley-d663fb874701c5d6096b9ac2cf4263cbf5889e92/volley-d663fb874701c5d6096b9ac2cf4263cbf5889e92.iml" />
+    </modules>
+  </component>
+</project>

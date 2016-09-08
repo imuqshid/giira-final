@@ -1,0 +1,127 @@
+<resources>
+    <string name="app_name">Sample</string>
+    <string name="send"> Send </string>
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyB9ie8Mlynzf_u0Aph3zCQLqqRCxZyLmec</string>
+
+
+    <string-array name="custom_weekdays">
+        <item>Su</item>
+        <item>M</item>
+        <item>Tu</item>
+        <item>W</item>
+        <item>Th</item>
+        <item>F</item>
+        <item>Sa</item>
+    </string-array>
+
+    <string-array name="sports_array">
+        <item>Shuttle Badminton</item>
+        <item>Tennis</item>
+        <item>FootBall</item>
+        <item>Basket Ball</item>
+        <item>Table Tennis</item>
+        <item>Chess</item>
+        <item>Hockey</item>
+    </string-array>
+
+    <string-array name="custom_months">
+        <item>JAN</item>
+        <item>Feb</item>
+        <item>MARCH</item>
+        <item>April</item>
+        <item>MAY</item>
+        <item>June</item>
+        <item>JULY</item>
+        <item>Aug</item>
+        <item>SEPT</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>DEC</item>
+    </string-array>
+    <string name="action_settings">Settings</string>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Fullname</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="name">Fullname</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_requestplace">requestplace</string>
+    <string name="title_activity_oneplace">oneplace</string>
+    <string name="title_activity_display_results">display_results</string>
+    <string name="title_activity_one__accomadation">One_Accomadation</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_search_results_filter">Search_results_filter</string>
+    <string name="title_activity_one_place">one_place</string>
+    <string name="title_activity_dash_board">DashBoard</string>
+    <string name="title_activity_request_place_by_user">request_place_by_user</string>
+
+    <string name="hello_world">"Date"</string>
+
+    <string name="Start_date">Start Date</string>
+    <string name="End_date">End Date</string>
+    <string name="District_name">Select district</string>
+    <string name="spinner_title">District</string>>
+    <string-array name="District_name">
+        <item>Mullaitivu</item>
+        <item>Vavuniya</item>
+        <item>Mannar</item>
+        <item>Anuradhapura</item>
+        <item> Hambantota</item>
+        <item>Polonnaruwa</item>
+        <item>Trincomalee</item>
+        <item>Matale</item>
+        <item>Moneragala</item>
+        <item>Ampara</item>
+        <item>Puttalam</item>
+        <item>Galle</item>
+        <item>Nuwara Eliya</item>
+        <item>Kegalle</item>
+        <item> Colombo</item>
+        <item>Batticaloa</item>
+        <item>Matara</item>
+        <item>Kalutara</item>
+        <item>Badulla</item>
+        <item>Jaffna</item>
+        <item>Gampaha</item>
+        <item>Kurunegala</item>
+        <item>Ratnapura</item>
+        <item>Kandy</item>
+    </string-array>
+    <string name="temperature">Temperature</string>
+    <string name="condition">Condition</string>
+    <string name="location">Location</string>
+    <string name="condition_icon">Condition Icon</string>
+    <string name="title_activity_push_notify">PushNotify</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="app_short_name">Girra-Disaster Alert !!!!!</string>
+
+
+    <string name="dismiss">ok</string>
+
+    <string name="snooze">alter path</string>
+    <string name="server_registered">Successfully registered with Girra Server</string>
+    <string name="gcm_send_message">You can get Disaster notification </string>
+    <string name="gcm_unregister_message">Your notification service is deactivated</string>
+    <string name="registering_message">Connecting with Girra server...</string>
+    <string name="unregistering_message">Un-registering Notification Service...</string>
+    <string name="token_error_message">An error occurred for connect with server. Please refresh.</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="large_text">"@+id/message"
+    </string>
+    <string name="gcm_defaultSenderId" />
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps_activitynew">Map</string>
+
+
+</resources>

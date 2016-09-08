@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "209305075165",
+    "firebase_url": "https://giira-9b0ef.firebaseio.com",
+    "project_id": "giira-9b0ef",
+    "storage_bucket": "giira-9b0ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:209305075165:android:3fefa0f1bbd891b3",
+        "android_client_info": {
+          "package_name": "gira.cdap.com.giira"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "209305075165-scn061peoct9mms5mt57uduhcne7sl08.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc5LdfBZdeIvhUUBzGtVK7eebpY7LYZ1o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

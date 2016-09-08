@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="gira.cdap.com.giira.display_results">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:scrollbars="none">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+
+                android:id="@+id/autoCompletesearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Search Here"
+                android:gravity="center|center_horizontal"
+                android:inputType="textAutoComplete|textAutoCorrect"
+                android:background="@drawable/view_border"
+                >
+            </AutoCompleteTextView>
+
+
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="30px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categories"
+            android:id="@+id/textView5"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="30px" />
+
+        <include
+            layout="@layout/recycler_feed_list"
+            />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="30px" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Regions"
+            android:id="@+id/textView6"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="30px" />
+
+        <include
+            layout="@layout/recycler_feed_list_regions"
+            />
+
+
+        <!--<ScrollView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/scrollView11"-->
+            <!--android:scrollbars="none">-->
+
+
+    <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imageView1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="0"-->
+            <!--android:src="@drawable/heritage" />-->
+
+        <!--<Space-->
+            <!--android:layout_width="40px"-->
+            <!--android:layout_height="30px" />-->
+
+        <!--<TextView-->
+            <!--android:layout_marginTop="25dp"-->
+            <!--android:id="@+id/heritageTV"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="0"-->
+            <!--android:textColor="@color/bg_main"-->
+            <!--android:textSize="25sp"-->
+            <!--android:text="Heritage Sites"/>-->
+
+    <!--</LinearLayout>-->
+
+        <!--<Space-->
+            <!--android:layout_width="20px"-->
+            <!--android:layout_height="30px" />-->
+
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/imageView2"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0"-->
+                <!--android:src="@drawable/religios" />-->
+
+            <!--<Space-->
+                <!--android:layout_width="40px"-->
+                <!--android:layout_height="30px" />-->
+
+            <!--<TextView-->
+                <!--android:layout_marginTop="25dp"-->
+                <!--android:id="@+id/religiousTV"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0"-->
+                <!--android:textColor="@color/bg_main"-->
+                <!--android:textSize="25sp"-->
+                <!--android:text="Religious Sites"/>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<Space-->
+            <!--android:layout_width="20px"-->
+            <!--android:layout_height="30px" />-->
+
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/imageView3"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0"-->
+                <!--android:src="@drawable/wildlife" />-->
+
+            <!--<Space-->
+                <!--android:layout_width="40px"-->
+                <!--android:layout_height="30px" />-->
+
+            <!--<TextView-->
+                <!--android:layout_marginTop="25dp"-->
+                <!--android:id="@+id/wildlifeTV"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0"-->
+                <!--android:textColor="@color/bg_main"-->
+                <!--android:textSize="25sp"-->
+                <!--android:text="Wildlife parks"/>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<Space-->
+            <!--android:layout_width="20px"-->
+            <!--android:layout_height="30px" />-->
+
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/imageView4"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0"-->
+                <!--android:src="@drawable/sports" />-->
+
+            <!--<Space-->
+                <!--android:layout_width="40px"-->
+                <!--android:layout_height="30px" />-->
+
+            <!--<TextView-->
+                <!--android:layout_marginTop="25dp"-->
+                <!--android:id="@+id/sportsTV"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0"-->
+                <!--android:textColor="@color/bg_main"-->
+                <!--android:textSize="25sp"-->
+                <!--android:text="Sports and Adventure"/>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<Space-->
+            <!--android:layout_width="20px"-->
+            <!--android:layout_height="30px" />-->
+
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/imageView5"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0"-->
+                <!--android:src="@drawable/musium" />-->
+
+            <!--<Space-->
+                <!--android:layout_width="40px"-->
+                <!--android:layout_height="30px" />-->
+
+            <!--<TextView-->
+                <!--android:layout_marginTop="25dp"-->
+                <!--android:id="@+id/MuseumsTV"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0"-->
+                <!--android:textColor="@color/bg_main"-->
+                <!--android:textSize="25sp"-->
+                <!--android:text="Museums"/>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<Space-->
+            <!--android:layout_width="20px"-->
+            <!--android:layout_height="30px" />-->
+
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/imageView6"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0"-->
+                <!--android:src="@drawable/scenic" />-->
+
+            <!--<Space-->
+                <!--android:layout_width="40px"-->
+                <!--android:layout_height="30px" />-->
+
+            <!--<TextView-->
+                <!--android:layout_marginTop="25dp"-->
+                <!--android:id="@+id/ScenicTV"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0"-->
+                <!--android:textColor="@color/bg_main"-->
+                <!--android:textSize="25sp"-->
+                <!--android:text="Scenic Beauty"/>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<Space-->
+            <!--android:layout_width="20px"-->
+            <!--android:layout_height="30px" />-->
+
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/imageView7"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0"-->
+                <!--android:src="@drawable/botany" />-->
+
+            <!--<Space-->
+                <!--android:layout_width="40px"-->
+                <!--android:layout_height="30px" />-->
+
+            <!--<TextView-->
+                <!--android:layout_marginTop="25dp"-->
+                <!--android:id="@+id/botanyTV"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0"-->
+                <!--android:textColor="@color/bg_main"-->
+                <!--android:textSize="25sp"-->
+                <!--android:text="Botanical Gardens"/>-->
+
+        <!--</LinearLayout>-->
+
+
+        <!--<ListView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/listView4" />-->
+
+
+
+    </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/ivaccimage1"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/placethumb" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvaccname1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accommodation Name"
+                android:textColor="#166CED"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/tvaccdescription1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#D64530"
+                android:text="Accommodation's description" />
+
+            <TextView
+                android:id="@+id/tvaccaddress1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#D64530"
+                android:text="Accommodation's Address" />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+    <TextView
+        android:id="@+id/tvaccwebsite1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#D64530"
+        android:text="Website"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/tvaccphoneno1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#D64530"
+        android:text="Phone No"
+        android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/tvaccemail1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#D64530"
+        android:text="Email"
+        android:layout_weight="1"/>
+    </LinearLayout>
+
+</LinearLayout>
