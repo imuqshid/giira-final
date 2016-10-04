@@ -49,7 +49,6 @@ public class CheckinActivity extends FragmentActivity implements OnMapReadyCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.checkin_layout);
 
-
         recyclerView =
                 (RecyclerView) findViewById(R.id.recycler_view1);
 
@@ -77,8 +76,6 @@ public class CheckinActivity extends FragmentActivity implements OnMapReadyCallb
             }
         });
 
-
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -100,8 +97,7 @@ public class CheckinActivity extends FragmentActivity implements OnMapReadyCallb
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
-
     }
 
-    }
+}
 

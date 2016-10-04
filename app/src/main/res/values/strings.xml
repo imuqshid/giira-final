@@ -123,5 +123,9 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps_activitynew">Map</string>
 
+    <string name="startplace">origin Place</string>
+    <string name="Destinationplace">destination Place</string>
+
+
 
 </resources>

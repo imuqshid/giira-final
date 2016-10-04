@@ -4,9 +4,16 @@ package gira.cdap.com.giira;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import butterknife.OnClick;
 
 public class CardDemoActivity extends AppCompatActivity {
 
@@ -22,7 +29,7 @@ public class CardDemoActivity extends AppCompatActivity {
         // setSupportActionBar(toolbar);
 
         recyclerView =
-                (RecyclerView) findViewById(R.id.recycler_view1);
+                (RecyclerView) findViewById(R.id.recycler_view2);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -30,6 +37,7 @@ public class CardDemoActivity extends AppCompatActivity {
         adapter = new RecyclerAdapter();
         recyclerView.setAdapter(adapter);
     }
+
 
     /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {

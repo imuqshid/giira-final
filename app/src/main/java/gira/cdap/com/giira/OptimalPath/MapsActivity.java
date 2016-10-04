@@ -10,13 +10,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import gira.cdap.com.giira.DisasterFragment;
-import gira.cdap.com.giira.OptimalPath.Disaster.DisasterPlace;
-import gira.cdap.com.giira.OptimalPath.Modules.DirectionFinder;
-import gira.cdap.com.giira.OptimalPath.Modules.Route;
-import gira.cdap.com.giira.OptimalPath.Modules.DirectionFinderListener;
-import gira.cdap.com.giira.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -90,9 +83,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,DirectionFinderListener {
+import gira.cdap.com.giira.DisasterFragment;
+import gira.cdap.com.giira.OptimalPath.Disaster.DisasterPlace;
+import gira.cdap.com.giira.OptimalPath.Disaster.UserPlace;
+import gira.cdap.com.giira.OptimalPath.Modules.DirectionFinder;
+import gira.cdap.com.giira.OptimalPath.Modules.DirectionFinderAlter;
+import gira.cdap.com.giira.OptimalPath.Modules.DirectionFinderListener;
+import gira.cdap.com.giira.OptimalPath.Modules.Route;
+import gira.cdap.com.giira.R;
 
-    private GoogleMap mMap;
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,DirectionFinderListener {
 
     private Button btnFindPath,btnFindAlterPath;
     private Button btnshow;
@@ -106,15 +106,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Double Latitude = 0.00;
     private Double Longitude = 0.00;
     public  List<DisasterPlace> location = new ArrayList<DisasterPlace>();
+    public  List<UserPlace> locationnew = new ArrayList<UserPlace>();
     public String routepath="";
+    public String startp="";
+    public String endp="";
+    public Context context;
 
 
 
     String JSON_STRING;
+    String JSON_STRINGnew;
+
+
+
     private GoogleApiClient client;
-    // private String jsonResponse;
 
-
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,9 +132,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         new BackgroundTask().execute();
+        new BackgroundTaskSecound().execute();
+
+        // new BackgroundTaskSecound().execute();
 
 
-        ImageButton back = (ImageButton)findViewById(R.id.back);
+        btnFindPath = (Button) findViewById(R.id.btnFindPath);
+        // etOrigin = (EditText) findViewById(R.id.etOrigin);
+        //etDestination = (EditText) findViewById(R.id.etDestination);
+        //btnFindAlterPath=(Button) findViewById(R.id.alternativepath);
+       ImageButton back = (ImageButton)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
@@ -140,19 +154,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-        btnFindPath = (Button) findViewById(R.id.btnFindPath);
-        // etOrigin = (EditText) findViewById(R.id.etOrigin);
-        //etDestination = (EditText) findViewById(R.id.etDestination);
-        //btnFindAlterPath=(Button) findViewById(R.id.alternativepath);
 
-
-
-        btnFindPath.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendRequest();
-            }
-        });
+        /** btnFindPath.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+        sendRequest();
+        }
+        });**/
 
 
 
@@ -165,6 +173,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void Savepath(View view)
     {
         new Savauserpath(this).execute();
+    }
+    public void startjourney(View view)
+    {
+
+        sendRequest();
+
+
     }
     public class Savauserpath extends AsyncTask<String, Void, String> {
 
@@ -320,6 +335,97 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
+    class BackgroundTaskSecound extends AsyncTask<Void,Void,String>
+    {
+        String json_urlnew;
+        String json_string;
+        @Override
+        protected void onPreExecute() {
+            json_urlnew="http://192.168.123.1/pushnotifications/userpathPlace.php";
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                URL url=new URL(json_urlnew);
+                HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
+                InputStream inputStream=httpURLConnection.getInputStream();
+                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder stringBuilder=new StringBuilder();
+                while ((JSON_STRINGnew=bufferedReader.readLine())!=null)
+                {
+                    stringBuilder.append(JSON_STRINGnew+"\n");
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return stringBuilder.toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String res ) {
+            // super.onPostExecute(aVoid);
+            try {
+                parseJSonsecund(res);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private void parseJSonsecund(String data) throws JSONException {
+        if (data == null)
+            return;
+
+
+        //List<DisasterPlace> location = new ArrayList<DisasterPlace>();
+        JSONObject place = new JSONObject(data);
+        JSONArray results = place.getJSONArray("result");
+        try {
+            for (int i = 0; i < results.length(); i++) {
+                JSONObject land = results.getJSONObject(i);
+                UserPlace u=new UserPlace();
+                u.startplace= land.getString("startPlace");
+                u.endplace=land.getString("endPlace");
+
+                locationnew.add(u);
+
+            }
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+
+
+        try {
+            for (int i = 0; i < locationnew.size(); i++) {
+                if(i==(locationnew.size()-1)) {
+                    startp = locationnew.get(i).startplace;
+                    endp = locationnew.get(i).endplace;
+                    locationnew.clear();
+                }
+
+
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.print("error occur to get results");
+        }
+
+
+    }
     private static double distance(double lat1, double lon1, double lat2, double lon2) {
         double theta = lon1 - lon2;
         double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
@@ -340,14 +446,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     private void sendRequest() {
-        String origin ="malabe";
-        String destination ="galle";
+        String origin = startp;
+        String destination = endp;
         if (origin.isEmpty()) {
-            Toast.makeText(this, "Please enter origin address!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, " couldn't find origin place", Toast.LENGTH_SHORT).show();
             return;
         }
         if (destination.isEmpty()) {
-            Toast.makeText(this, "Please enter destination address!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "coudn't find destination place", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -358,8 +464,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
     private void sendRequestAlter() {
-        String origin = "malabe";
-        String destination = "galle";
+        String origin = startp;
+        String destination = endp;
         if (origin.isEmpty()) {
             Toast.makeText(this, "Please enter origin address!", Toast.LENGTH_SHORT).show();
             return;
@@ -370,12 +476,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         try {
-            new DirectionFinder(this, origin, destination).executeAlter();
+            new DirectionFinderAlter(this, origin, destination).executeAlter();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
-
 
 
     /**
@@ -391,17 +496,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        mMap.setMyLocationEnabled(true);
+
     }
     public void onDirectionFinderStart() {
         progressDialog = ProgressDialog.show(this, "Please wait.",
@@ -465,14 +560,90 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     if (distance(route.points.get(i).latitude, route.points.get(i).longitude, d.LocPoints.latitude, d.LocPoints.longitude) < 10) {
 
-
-                        new AlertDialog.Builder(this).setTitle("Disaster Warning").setMessage("your optimal path is affected by disaster,Get the alternative path in order to avoid the risk").setNegativeButton("Cancel",null).setPositiveButton("Get Alternativepath" , new DialogInterface.OnClickListener() {
+                        new AlertDialog.Builder(this).setTitle("Disaster Warning").setMessage("your optimal path is affected by disaster,Get the alternative path in order to avoid the risk").setNegativeButton("Cancel", null).setPositiveButton("Get Alternativepath", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 sendRequestAlter();
-                            }}).setIcon(R.drawable.cancel).show();
-                        break outerloop;
+                            }
+                        }).setIcon(R.drawable.cancel).show();
+                         break outerloop;
 
                     }
+
+
+                }
+
+            }
+
+        }
+
+        //routepath="2 1,2 2,1 2";
+
+        for (Route route : routes) {
+            routepath="";
+            for (int i = 0; i <route.points.size(); i++) {
+                routepath =routepath + route.points.get(i).latitude;
+                routepath =routepath + " ";
+                routepath =routepath +route.points.get(i).longitude;
+                routepath =routepath + ",";
+
+            }
+
+        }
+        if(routes.isEmpty())
+        {
+            Toast.makeText(getApplicationContext(),
+                    "Incorrect origin and destination places", Toast.LENGTH_LONG)
+                    .show();
+        }
+        else {
+            routes.clear();
+        }
+
+
+    }
+    public void onDirectionFinderSuccessAlter(List<Route> routes) {
+        progressDialog.dismiss();
+        polylinePaths = new ArrayList<>();
+        originMarkers = new ArrayList<>();
+        destinationMarkers = new ArrayList<>();
+
+        for (Route route : routes) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(route.startLocation, 8));
+            ((TextView) findViewById(R.id.tvDuration)).setText(route.duration.text);
+            ((TextView) findViewById(R.id.tvDistance)).setText(route.distance.text);
+
+            originMarkers.add(mMap.addMarker(new MarkerOptions()
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue))
+                    .title(route.startAddress)
+                    .position(route.startLocation)));
+            destinationMarkers.add(mMap.addMarker(new MarkerOptions()
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.end_green))
+                    .title(route.endAddress)
+                    .position(route.endLocation)));
+
+            PolylineOptions polylineOptions = new PolylineOptions().
+                    geodesic(true).
+                    color(Color.RED).
+                    width(10);
+
+            for (int i = 0; i < route.points.size(); i++)
+                polylineOptions.add(route.points.get(i));
+
+            polylinePaths.add(mMap.addPolyline(polylineOptions));
+        }
+        outerloop:
+        for (Route route : routes) {
+            for (int i = 0; i < route.points.size(); i++) {
+
+                for (DisasterPlace d : location) {
+
+                    if (distance(route.points.get(i).latitude, route.points.get(i).longitude, d.LocPoints.latitude, d.LocPoints.longitude) < 10) {
+
+                        new AlertDialog.Builder(this).setTitle("Disaster Warning").setMessage("Your Alternative path also affected by disaster So Cancel the journey plan").setNegativeButton("Cancel", null).setIcon(R.drawable.cancel).show();
+                        routes.clear();
+                        break outerloop;
+                    }
+
 
 
                 }
@@ -505,12 +676,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-
+        /**client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Maps Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://com.sivarasan.alternativepath/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);**/
     }
 
     @Override
     public void onStop() {
         super.onStop();
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+       /** Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Maps Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://com.sivarasan.alternativepath/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();**/
     }
 }
