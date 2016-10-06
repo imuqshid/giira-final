@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:inputType="text"
-        />
+        android:layout_weight="0.09" />
 
     <Button
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textview2"
         android:inputType="text"
-        />
+        android:layout_weight="0.15" />
 
     <Spinner
         android:id="@+id/spinner"

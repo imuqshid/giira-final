@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by siva on 9/6/2016.
+ * Created by siva on 9/9/2016.
  */
-public class DirectionFinder {
+public class DirectionFinderAlter {
     private static final String DIRECTION_URL_API = "https://maps.googleapis.com/maps/api/directions/json?";
     private static final String GOOGLE_API_KEY = "AIzaSyB5WzaWGSR2bS83ybscVevOlBLkPlNK4LA";
     private DirectionFinderListener listener;
@@ -30,25 +30,25 @@ public class DirectionFinder {
     private String destination;
     public List<Route> routes = new ArrayList<Route>();
 
-    public DirectionFinder(DirectionFinderListener listener, String origin, String destination) {
+    public DirectionFinderAlter(DirectionFinderListener listener, String origin, String destination) {
         this.listener = listener;
         this.origin = origin;
         this.destination = destination;
     }
 
-    public void execute() throws UnsupportedEncodingException {
+
+    public void executeAlter() throws UnsupportedEncodingException {
         listener.onDirectionFinderStart();
-        new DownloadRawData().execute(createUrl());
+        new DownloadRawData().execute(createUrlAlter());
     }
 
 
-    private String createUrl() throws UnsupportedEncodingException {
+    private String createUrlAlter() throws UnsupportedEncodingException {
         String urlOrigin = URLEncoder.encode(origin, "utf-8");
         String urlDestination = URLEncoder.encode(destination, "utf-8");
 
-        return DIRECTION_URL_API + "origin=" + urlOrigin + "&destination=" + urlDestination + "&key=" + GOOGLE_API_KEY;
+        return DIRECTION_URL_API + "origin=" + urlOrigin + "&destination=" + urlDestination+"&avoid=tolls|highways|ferries" + "&key=" + GOOGLE_API_KEY;
     }
-
 
     private class DownloadRawData extends AsyncTask<String, Void, String> {
 
@@ -116,7 +116,7 @@ public class DirectionFinder {
             routes.add(route);
         }
 
-        listener.onDirectionFinderSuccess(routes);
+        listener.onDirectionFinderSuccessAlter(routes);
     }
 
     private List<LatLng> decodePolyLine(final String poly) {

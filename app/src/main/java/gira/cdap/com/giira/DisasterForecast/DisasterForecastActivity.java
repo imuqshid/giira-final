@@ -103,7 +103,78 @@ public class DisasterForecastActivity extends AppCompatActivity implements OnIte
     }
     public void DisasterForecast(View view)
     {
-        new BackgroundTask().execute();
+        try {
+            EditText Startdatenew = (EditText) findViewById(R.id.textview1);
+            EditText Enddatenew = (EditText) findViewById(R.id.textview2);
+
+            String a = Startdatenew.getText().toString();
+            String b = Enddatenew.getText().toString();
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            String[] s = a.split("-");
+            String[] r = b.split("-");
+            final int l = Integer.valueOf(s[0]);
+            final int m = Integer.valueOf(s[1]);
+            final int n = Integer.valueOf(s[2]);
+            final int p = Integer.valueOf(r[0]);
+            final int q = Integer.valueOf(r[1]);
+            final int r2 = Integer.valueOf(r[2]);
+            if(day>n||day>r2)
+            {
+                if((month+1)>=m ||(month+1)>=q )
+                {
+                    if(year >= l || year >=p) {
+                        Toast.makeText(getApplicationContext(),
+                                "Please select dates after current day", Toast.LENGTH_LONG)
+                                .show();
+                    }
+                }
+
+            }
+            else if((month+1)>=m ||(month+1)>q ) {
+                if (year >= l || year >= p) {
+                    Toast.makeText(getApplicationContext(),
+                            "Please select dates after current day", Toast.LENGTH_LONG)
+                            .show();
+                }
+            }
+            else if (l > p) {
+
+
+                Toast.makeText(getApplicationContext(),
+                        "End date must come after start date", Toast.LENGTH_LONG)
+                        .show();
+            }
+            else if (m > q) {
+                Toast.makeText(getApplicationContext(),
+                        "End date must come after start date", Toast.LENGTH_LONG)
+                        .show();
+
+            }
+            else if (n > r2) {
+                if(m >=q) {
+                    Toast.makeText(getApplicationContext(),
+                            "End date must come after start date", Toast.LENGTH_LONG)
+                            .show();
+
+                }
+            } else {
+                new BackgroundTask().execute();
+
+
+
+            }
+        }
+        catch(Exception e)
+        {
+
+            Toast.makeText(getApplicationContext(),
+                    "You should select start and end date to get disaster forecast", Toast.LENGTH_LONG)
+                    .show();
+        }
     }
 
 
@@ -228,17 +299,22 @@ public class DisasterForecastActivity extends AppCompatActivity implements OnIte
                 if(p.Pone >= 6.5 || p.Ptow >=6.5 )
                 {
                     new AlertDialog.Builder(this).setTitle("Disaster Forecast").setMessage("Your destination district has high disaster risk,please change your trip plan").setNegativeButton("ok",null).show();
-                    Prob.clear();
                     break;
-
                 }
                 else{
                     new AlertDialog.Builder(this).setTitle("Disaster Forecast").setMessage("you can carry on trip").setNegativeButton("ok",null).show();
-                    Prob.clear();
                     break;
                 }
 
 
+            }
+            if(Prob.isEmpty())
+            {
+                new AlertDialog.Builder(this).setTitle("Disaster Forecast").setMessage("you can carry on trip").setNegativeButton("ok", null).show();
+            }
+            else
+            {
+                Prob.clear();
             }
         }
         catch (Exception e)

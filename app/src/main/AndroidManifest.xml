@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="gira.cdap.com.giira">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -7,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -20,8 +22,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="@android:icon">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -45,11 +49,13 @@
         <activity android:name=".HomeFragment" />
         <activity android:name=".DisasterForecast.DisasterForecastActivity" />
         <activity android:name=".WeatherForecast.WeatherPrediction" />
+        <activity android:name=".OptimalPath.Userjourney" />
         <activity android:name=".OptimalPath.MapsActivity" />
-        <activity android:name=".TourFragment" />
         <activity android:name=".EventPlanningFragment" />
         <activity android:name=".DisasterFragment" />
         <activity android:name=".UserProfileActivity" />
+        <activity android:name=".NewEvent" />
+        <activity android:name=".NewTeam" />
         <activity
             android:name=".requestplace"
             android:label="@string/title_activity_requestplace"
@@ -81,9 +87,22 @@
             android:name=".Search_results_filter"
             android:label="@string/title_activity_search_results_filter"
             android:theme="@style/AppTheme" />
+        <activity android:name=".TourFragment"></activity>
+        <activity android:name=".TourPlanning"></activity>
+        <activity android:name=".Emergancy"></activity>
+        <activity android:name=".Featureplace"></activity>
+        <activity android:name=".NearByPlace"></activity>
+        <activity android:name=".Accomadation"></activity>
+        <activity android:name=".Transport"></activity>
+        <activity android:name=".Toprated"></activity>
+        <activity android:name=".Mostvisited"></activity>
+        <activity android:name=".SingleItemView"></activity>
+        <activity android:name=".MapsActivitys"></activity>
+        <activity android:name=".Other"></activity>
         <activity
-            android:name=".OptimalPath.MapsActivitynew"
-            android:label="@string/title_activity_maps_activitynew"></activity>
+            android:name=".sample"
+            android:label="@string/title_activity_sample"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

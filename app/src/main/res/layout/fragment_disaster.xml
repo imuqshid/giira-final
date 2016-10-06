@@ -30,6 +30,11 @@
             android:layout_height="wrap_content"
             android:text="User Path Prediction"
             android:id="@+id/userpathprediction" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="user path information"
+            android:id="@+id/userpathinformation" />
 
     </LinearLayout>
 

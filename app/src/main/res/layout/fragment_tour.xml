@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true"
+    tools:context="gira.cdap.com.giira.TourFragment">
+
     <include
         android:id="@+id/tool_bar"
         layout="@layout/toolbar"
@@ -11,4 +14,120 @@
 
 
 
-</LinearLayout>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_tour" />
+
+    <ImageButton
+        android:id="@+id/tour"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="380dp"
+        android:layout_marginLeft="20dp"
+        android:background="@null"
+        android:src="@drawable/tour1" />
+
+    <ImageButton
+        android:id="@+id/emer"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="380dp"
+        android:layout_marginLeft="280dp"
+        android:background="@null"
+        android:src="@drawable/emergancy" />
+
+
+    <ImageButton
+        android:id="@+id/image1"
+        android:layout_width="175dp"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/main"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="10dp"
+        android:background="@null" />
+
+
+
+    <ViewFlipper
+        android:id="@+id/bckgrndViewFlipper2"
+        android:layout_width="175dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="200dp">
+        <ImageView
+            android:id="@+id/bckgrndImageView7"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/m1" />
+        <ImageView
+            android:id="@+id/bckgrndImageView8"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/m2" />
+        <ImageView
+            android:id="@+id/bckgrndImageView9"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/m3" />
+        <ImageView
+            android:id="@+id/bckgrndImageView10"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/m4" />
+        <ImageView
+            android:id="@+id/bckgrndImageView11"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/m5" />
+        <ImageView
+            android:id="@+id/bckgrndImageView12"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/m6" />
+    </ViewFlipper>
+    <TextView
+        android:id="@+id/btnLinkfea"
+        android:layout_width="175dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="24dp"
+        android:text="Feature Place"
+        android:gravity="right"
+        android:textSize="26dip"
+        android:layout_marginTop="115dp"
+        android:textColor="#ffffff"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        android:layout_marginLeft="190dp"/>
+
+    <TextView
+        android:id="@+id/near"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text=" Near Me Now"
+        android:gravity="left"
+        android:textSize="26dip"
+        android:layout_marginTop="115dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"/>
+
+
+
+</android.support.design.widget.CoordinatorLayout>

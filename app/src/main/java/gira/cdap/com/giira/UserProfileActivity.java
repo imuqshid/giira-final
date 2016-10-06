@@ -104,8 +104,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 
-
-
     public void buttonClick(View v)
     {
         String text=btn_friend.getText().toString();

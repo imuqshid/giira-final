@@ -123,5 +123,19 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps_activitynew">Map</string>
 
+    <string name="startplace">origin Place</string>
+    <string name="Destinationplace">destination Place</string>
+
+    <string name="start">Starting Place</string>
+    <string name="desti">Destination Place</string>
+    <string name="cal">Starting Date</string>
+    <string name="days">Ending Date</string>
+    <string name="ranklabel">"Rank : "</string>
+    <string name="countrylabel">"Name : "</string>
+    <string name="populationlabel">"Web : "</string>
+    <string name="typelabel">"Type : "</string>
+    <string name="populationlabel11">"Phone : "</string>
+    <string name="title_activity_sample">sample</string>
+
 
 </resources>

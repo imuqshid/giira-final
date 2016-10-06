@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import gira.cdap.com.giira.DisasterForecast.DisasterForecastActivity;
 import gira.cdap.com.giira.OptimalPath.MapsActivity;
+import gira.cdap.com.giira.OptimalPath.Userjourney;
 import gira.cdap.com.giira.WeatherForecast.WeatherPrediction;
 
 
@@ -42,10 +43,10 @@ public class DisasterFragment extends Activity {
                 finish();
             }
         });
-
         Button df = (Button)findViewById(R.id.disasterforecast);
         Button wf = (Button)findViewById(R.id.weatherforecast);
         Button upp = (Button)findViewById(R.id.userpathprediction);
+        Button upi = (Button)findViewById(R.id.userpathinformation);
 
         df.setOnClickListener(new View.OnClickListener() {
 
@@ -72,6 +73,15 @@ public class DisasterFragment extends Activity {
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),
                         MapsActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        upi.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),
+                        Userjourney.class);
                 startActivity(i);
                 finish();
             }

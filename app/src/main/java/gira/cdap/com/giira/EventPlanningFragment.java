@@ -113,37 +113,43 @@ public class EventPlanningFragment extends AppCompatActivity implements View.OnC
         return FORMATTER.format(date.getDate());
     }
 
+    void openNewEvent() {
+        Log.d("Clicked", "Fab 1");
+
+        animateFAB();
+
+        Intent ii = new Intent(getApplicationContext(),
+                NewEvent.class);
+        startActivity(ii);
+        finish();
+    }
+
+    void openNewTEam() {
+        Log.d("Clicked", "Fab 2");
+
+        animateFAB();
+
+        Intent i = new Intent(getApplicationContext(),
+                NewTeam.class);
+        startActivity(i);
+        finish();
+
+    }
+
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        switch (id){
+        switch (id) {
             case R.id.fab:
-
                 animateFAB();
                 break;
             case R.id.fab2:
-
-                Log.d("Clicked", "Fab 2");
-
-                animateFAB();
-
-                Intent i = new Intent(getApplicationContext(),
-                        NewTeam.class);
-                startActivity(i);
-                finish();
-
+                openNewTEam();
                 break;
+
             case R.id.fab1:
-
-                Log.d("Clicked", "Fab 1");
-
-                animateFAB();
-
-                Intent ii = new Intent(getApplicationContext(),
-                        NewEvent.class);
-                startActivity(ii);
-                finish();
+                openNewEvent();
                 break;
         }
     }
