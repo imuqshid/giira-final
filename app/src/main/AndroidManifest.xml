@@ -87,22 +87,23 @@
             android:name=".Search_results_filter"
             android:label="@string/title_activity_search_results_filter"
             android:theme="@style/AppTheme" />
-        <activity android:name=".TourFragment"></activity>
-        <activity android:name=".TourPlanning"></activity>
-        <activity android:name=".Emergancy"></activity>
-        <activity android:name=".Featureplace"></activity>
-        <activity android:name=".NearByPlace"></activity>
-        <activity android:name=".Accomadation"></activity>
-        <activity android:name=".Transport"></activity>
-        <activity android:name=".Toprated"></activity>
-        <activity android:name=".Mostvisited"></activity>
-        <activity android:name=".SingleItemView"></activity>
-        <activity android:name=".MapsActivitys"></activity>
-        <activity android:name=".Other"></activity>
+        <activity android:name=".TourFragment" />
+        <activity android:name=".TourPlanning" />
+        <activity android:name=".Emergancy" />
+        <activity android:name=".Featureplace" />
+        <activity android:name=".NearByPlace" />
+        <activity android:name=".Accomadation" />
+        <activity android:name=".Transport" />
+        <activity android:name=".Toprated" />
+        <activity android:name=".Mostvisited" />
+        <activity android:name=".SingleItemView" />
+        <activity android:name=".MapsActivitys" />
+        <activity android:name=".Other" />
         <activity
             android:name=".sample"
             android:label="@string/title_activity_sample"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".NotificationActivity"></activity>
     </application>
 
 </manifest>

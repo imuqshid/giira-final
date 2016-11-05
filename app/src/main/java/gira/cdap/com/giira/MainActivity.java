@@ -42,7 +42,7 @@ public class  MainActivity extends AppCompatActivity implements AdapterView.OnIt
     ImageButton tourIcon;
     ImageButton eventIcon;
     ImageButton disasterIcon;
-    ImageButton profileIcon;
+    ImageButton profileIcon,notificationIcon;
 
 
     String list_userid,list_username;
@@ -107,6 +107,17 @@ public class  MainActivity extends AppCompatActivity implements AdapterView.OnIt
             }
         });
 
+        notificationIcon = (ImageButton) findViewById(R.id.notificationicon);
+        notificationIcon.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this,
+                        NotificationActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
         profileIcon = (ImageButton) findViewById(R.id.profileIcon);
         profileIcon.setOnClickListener(new View.OnClickListener() {
 
@@ -141,9 +152,6 @@ public class  MainActivity extends AppCompatActivity implements AdapterView.OnIt
     public ArrayList autocompleteUser(String input) {
         ArrayList resultListUser = null;
         ArrayList resultgemorart=null;
-
-
-
 
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
@@ -187,10 +195,7 @@ public class  MainActivity extends AppCompatActivity implements AdapterView.OnIt
                 resultListUser.add(predsJsonArray.getJSONObject(i).getString("name"));
                 list_userid=predsJsonArray.getJSONObject(i).getString("id");
                 list_username=predsJsonArray.getJSONObject(i).getString("name");
-//                Toast.makeText(this, placeid, Toast.LENGTH_SHORT).show();
 
-
-//                resultgemorart.add(predsJsonArray.getJSONObject(i).getString("formatted_address"));
             }
         } catch (JSONException e) {
 //            Log.e(LOG_TAG, "Cannot process JSON results", e);
@@ -207,9 +212,9 @@ public class  MainActivity extends AppCompatActivity implements AdapterView.OnIt
             intentuser.putExtra("id", list_userid);
             intentuser.putExtra("name", list_username);
 
-
             startActivity(intentuser);
 
+        //autoCompleteTextView.append(",");
     }
 
 

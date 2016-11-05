@@ -83,7 +83,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true">
 
-            <AutoCompleteTextView
+            <MultiAutoCompleteTextView
 
                 android:id="@+id/autoCompletesearchhomepage"
                 android:layout_width="320dp"
@@ -92,10 +92,8 @@
                 android:layout_marginLeft="5dp"
                 android:hint="Search Here"
                 android:gravity="center|center_horizontal"
-                android:inputType="textAutoComplete|textAutoCorrect"
                 android:background="@drawable/view_border"
-                >
-            </AutoCompleteTextView>
+                />
 
             <ImageButton
                 android:layout_width="25dp"

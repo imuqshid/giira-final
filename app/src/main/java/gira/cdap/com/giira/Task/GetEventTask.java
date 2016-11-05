@@ -54,7 +54,7 @@ public class GetEventTask extends AsyncTask<String,Void,String> {
         android.util.Log.d("Task","AddReviewTask");
         serviceHandler = new ServiceHandler();
         inputStream = serviceHandler.makeServiceCall(
-                ""+serverURL.local_host_url+"giira/index.php/event/getevents?",1,
+                ""+serverURL.local_host_url+"giira/index.php/event/getevents?date="+date,1,
                 value);
         parsing = new JSONParser();
 

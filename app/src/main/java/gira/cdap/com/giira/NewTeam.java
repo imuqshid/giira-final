@@ -11,6 +11,7 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 
 import gira.cdap.com.giira.Task.AddTeamTask;
+import gira.cdap.com.giira.Task.GetUsersByNameTask;
 
 /**
  * Created by Muqshid on 7/30/2016.
@@ -22,19 +23,18 @@ public class NewTeam extends AppCompatActivity implements View.OnClickListener {
     EditText tname,description,members;
     int count =1;
 
+    String [] nameA=null;
+    String [] idA=null;
+    String [] unidA=null;
+
     ImageButton homeIcon;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_team);
 
-        MultiAutoCompleteTextView multiAutoCompleteTextView=(MultiAutoCompleteTextView)findViewById(R.id.members_tf);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getApplicationContext(),R.layout.text,
-                USERS);
-        multiAutoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
-
-        multiAutoCompleteTextView.setAdapter(adapter);
+        GetUsersByNameTask gTask=new GetUsersByNameTask(getApplicationContext(),"0",this);
+        gTask.execute();
 
 
         pageTitle = (TextView)findViewById(R.id.pageTitle);
@@ -54,20 +54,6 @@ public class NewTeam extends AppCompatActivity implements View.OnClickListener {
         });
 
         getElements();
-
-        /*LinearLayout ll = (LinearLayout)findViewById(R.id.linearLayout);
-        TextView tv = new TextView(this);
-        tv.setVisibility(View.VISIBLE);
-        tv.setText("Add member");
-        tv.setTextSize(15);
-        tv.setPaddingRelative(25,0,25,0);
-        tv.setTextColor(Color.BLUE);
-        tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-
-        tv.setId(ADD_MEMBER);
-        tv.setOnClickListener(this);
-
-        ll.addView(tv);*/
 
     }
 
@@ -97,5 +83,20 @@ public class NewTeam extends AppCompatActivity implements View.OnClickListener {
         addTeamTask.execute();
 
 
+    }
+
+
+    public void fillArrays(String[] userA, String[] nameA, String[] unidA) {
+        this.nameA=nameA;
+        this.idA=userA;
+        this.unidA=unidA;
+
+        MultiAutoCompleteTextView multiAutoCompleteTextView=(MultiAutoCompleteTextView)findViewById(R.id.members_tf_t);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getApplicationContext(),R.layout.text,
+                nameA);
+        multiAutoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+
+        multiAutoCompleteTextView.setAdapter(adapter);
     }
 }

@@ -6,7 +6,6 @@ import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,7 +14,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import gira.cdap.com.giira.EventPlanningFragment;
+import gira.cdap.com.giira.NotificationActivity;
 import gira.cdap.com.giira.Service.JSONParser;
 import gira.cdap.com.giira.Service.ServiceHandler;
 import gira.cdap.com.giira.UserProfileActivity;
@@ -25,24 +24,28 @@ import gira.cdap.com.giira.UserProfileActivity;
  * Created by Perceptor on 6/13/2016.
  */
 
-public class GetFriendStatus extends AsyncTask<String,Void,String> {
+public class GetNotification extends AsyncTask<String,Void,String> {
 
     ServiceHandler serviceHandler ;
     InputStream inputStream;
     JSONParser parsing;
-    String user1,user2;
+    String message,time,type,status;
+    Integer id;
+
     JSONObject json;
-    UserProfileActivity userProfileActivity;
+    NotificationActivity notificationActivity ;
 
     Context context;
 
 
-    public GetFriendStatus(Context context, String user1, String user2, UserProfileActivity userProfileActivity)
+    public GetNotification(Context context, String message, String time,String type,String status, NotificationActivity notificationActivity)
     {
         this.context=context;
-        this.user1=user1;
-        this.user2=user2;
-        this.userProfileActivity=userProfileActivity;
+        this.message=message;
+        this.time=time;
+        this.type=type;
+        this.status=status;
+        this.notificationActivity=notificationActivity;
 
     }
 
@@ -52,11 +55,14 @@ public class GetFriendStatus extends AsyncTask<String,Void,String> {
         String result = null;
 
         List<NameValuePair> value = new ArrayList<NameValuePair>();
-        value.add(new BasicNameValuePair("user1", user1));
-        value.add(new BasicNameValuePair("user2", user2));
+        value.add(new BasicNameValuePair("message", message));
+        value.add(new BasicNameValuePair("time", time));
+        value.add(new BasicNameValuePair("type", type));
+        value.add(new BasicNameValuePair("status", status));
+
         serviceHandler = new ServiceHandler();
         inputStream = serviceHandler.makeServiceCall(
-                ""+serverURL.local_host_url+"giira/index.php/friends/checkstatus?user1="+user1+"&user2="+user2,1,
+                ""+serverURL.local_host_url+"giira/index.php/friends/checkstatus?user1="+id,1,
                 value);
         parsing = new JSONParser();
 
@@ -84,7 +90,6 @@ public class GetFriendStatus extends AsyncTask<String,Void,String> {
         {
             try {
                 status=json.getString("status");
-                userProfileActivity.setButtonText(status);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -92,7 +97,6 @@ public class GetFriendStatus extends AsyncTask<String,Void,String> {
         }
         else
         {
-
             Toast.makeText(context, "Insertion Failed", Toast.LENGTH_SHORT).show();
 
         }

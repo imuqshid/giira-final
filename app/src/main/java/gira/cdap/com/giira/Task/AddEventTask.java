@@ -1,7 +1,10 @@
 package gira.cdap.com.giira.Task;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -14,7 +17,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import gira.cdap.com.giira.EventPlanningFragment;
 import gira.cdap.com.giira.NewEvent;
+import gira.cdap.com.giira.R;
 import gira.cdap.com.giira.Service.JSONParser;
 import gira.cdap.com.giira.Service.ServiceHandler;
 
@@ -112,6 +117,7 @@ public class AddEventTask extends AsyncTask<String,Void,String> {
             if(newEvent!=null)
             {
                 Toast.makeText(context, "successfully added", Toast.LENGTH_SHORT).show();
+
             }
 
         }
@@ -120,10 +126,13 @@ public class AddEventTask extends AsyncTask<String,Void,String> {
             if(newEvent!=null)
             {
                 Toast.makeText(context, "Insertion Failed", Toast.LENGTH_SHORT).show();
+
             }
 
         }
 
 
     }
+
+
 }

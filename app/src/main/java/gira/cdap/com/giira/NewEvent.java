@@ -26,9 +26,21 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import gira.cdap.com.giira.Task.AddEventTask;
+import gira.cdap.com.giira.Task.GetUsersByNameTask;
+import gira.cdap.com.giira.Task.serverURL;
 
 /**
  * Created by Muqshid on 7/30/2016.
@@ -42,6 +54,10 @@ public class NewEvent extends ActionBarActivity {
     EditText name,description;
     MultiAutoCompleteTextView members;
     AutoCompleteTextView team,location;
+    String list_userid,list_username;
+    String [] nameA=null;
+    String [] idA=null;
+    String [] unidA=null;
 
     static final int DIALOG_ID_DATE = 0;
     static final int DIALOG_ID_TIME = 1;
@@ -113,13 +129,10 @@ public class NewEvent extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_event);
 
-        MultiAutoCompleteTextView members=(MultiAutoCompleteTextView)findViewById(R.id.members_tf);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getApplicationContext(),R.layout.text,
-                USERS);
-        members.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+        GetUsersByNameTask gTask=new GetUsersByNameTask(getApplicationContext(),"0",this);
+        gTask.execute();
 
-        members.setAdapter(adapter);
+
 
         //---------------------
 
@@ -171,6 +184,7 @@ public class NewEvent extends ActionBarActivity {
 
         getElements();
     }
+
 
     static final String[] USERS = new String[] { "Cristiano Ronaldo","David Beckham", "Sabhan","Chrishana","Zlatan Ibrahimovic","Rooney", "Shiva"
     };
@@ -293,5 +307,19 @@ public class NewEvent extends ActionBarActivity {
             addEventTask.execute();
         }
 
+    }
+
+    public void fillArrays(String[] userA, String[] nameA, String[] unidA) {
+        this.nameA=nameA;
+        this.idA=userA;
+        this.unidA=unidA;
+
+        MultiAutoCompleteTextView members=(MultiAutoCompleteTextView)findViewById(R.id.members_tf);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getApplicationContext(),R.layout.text,
+                nameA);
+        members.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+
+        members.setAdapter(adapter);
     }
 }
